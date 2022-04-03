@@ -32,7 +32,7 @@ export const Navigation = () => {
       <Link to="/artigos">Meus Artigos</Link>
       <Link to="/artigos/novo">Novo Artigo</Link>
       <Link to="/login">Login</Link>
-      <Link to="/"  onClick={logout}>Sair</Link>
+      <Link to="/" onClick={logout}>Sair</Link>
     </>
   );
 }
