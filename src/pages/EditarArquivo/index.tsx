@@ -1,12 +1,14 @@
 import { useEffect } from "react";
-import axios from "axios";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ArticleForm } from "../../components/ArticleForm";
 import { ArticleThumbnailProps } from "../../components/ArticleThumbnail/ArticleThumbnail.types";
 
+import apiClient from '../../services/api-cliente'
+
 export const EditarArquivoPage = () => {
   const [artigo, setArtigo] = useState<ArticleThumbnailProps>()
+  const navigate = useNavigate()
   const { id } = useParams()
 
   useEffect(() => {
@@ -16,31 +18,36 @@ export const EditarArquivoPage = () => {
   }, [id])
 
   async function buscarArtigo() {
-    const token = localStorage.getItem("acess_token");
-    const response = await axios.get<ArticleThumbnailProps>(
-      `http://3.221.159.196:3307/artigos/${id}`,
-      {
-        headers: {
-          'Authorization': `bearer ${token}`
-        }
-      }
-    )
+    const response = await apiClient.get<ArticleThumbnailProps>(
+      `/artigos/${id}`
+    );
+    
 
     setArtigo(response.data)
   }
 
-  const handleSubmit = (artigo: ArticleThumbnailProps) => {
+  async function handleSubmit(artigo: ArticleThumbnailProps) {
     if (artigo.id) {
-      console.log('=====> devo atualizar o artigo');
+      await apiClient.patch(`/artigos/${artigo.id}`, {...artigo})
+      navigate(`/artigo/${artigo.id}`)
+      console.log('cheguei aqui patch')
     } else {
-      console.log('=====> devo criar um novo artigo');
+      const guardaArtigo = await apiClient.post(`/artigos`, {...artigo})
+      navigate(`/artigo/${guardaArtigo.data.id}`)
+      console.log('cheguei aqui post')
     }
+  }
+
+  async function deletarArquivo() {
+    await apiClient.delete(`/artigos/${id}`)
+    navigate(`/artigos`)
+    console.log('Cheguei aqui')
   }
 
   return (
     <>
       <div className="items-center justify-center m-10">
-        <ArticleForm article={artigo} onSubmit={ handleSubmit }/>
+        <ArticleForm article={artigo} onSubmit={ handleSubmit } onClick={deletarArquivo}/>
       </div>
     </>
   );
