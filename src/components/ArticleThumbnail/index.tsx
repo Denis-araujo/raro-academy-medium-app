@@ -16,14 +16,14 @@ export const ArticleThumbnail: React.FC<ArticleThumbnailProps> = ({
   const [editavel, setEditavel] = useState(false)
 
   useEffect(() => {
-    const usuarioAtual = Number(localStorage.getItem('usuarioId'))
+    const usuarioAtual = Number(localStorage.getItem('id'))
 
     setEditavel(autor.id === usuarioAtual)
   }, [autor])
 
   return (
     <div className="flex flex-col w-2/3 mt-5">
-      <Link to={`/artigo/${id}`}>
+      <Link to={`/artigos/${id}`}>
         <header className="flex flex-row gap-3 items-center">
           <img
             src={ autor.avatar }
@@ -47,7 +47,7 @@ export const ArticleThumbnail: React.FC<ArticleThumbnailProps> = ({
           </div>
         </div>
       </Link>
-      <Link to={'/artigo/editar/:id'}>
+      <Link to={`/artigos/editar/${id}`}>
         <footer className="flex flex-row pt-7 gap-3 items-center">
           <div className="text-gray-500 text-xs my-1">
             { tempoLeitura } de leitura

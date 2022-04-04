@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "../Button";
 import { Input } from "../Input";
 
-import axios from 'axios'
+import apiClient from '../../services/api-cliente';
 
 
 export const Login = () => {
@@ -21,8 +21,8 @@ export const Login = () => {
     setLoading(true)
 
     try {
-      const url = `http://3.221.159.196:3307/auth/login`;
-      const response = await axios.post(
+      const url = '/auth/login';
+      const response = await apiClient.post(
         url,
         { login, senha }
       );
