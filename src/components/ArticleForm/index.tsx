@@ -68,7 +68,7 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({article, onSubmit, onCl
             onChange={(e) => setTitulo(e.target.value)}
           />
           <Input
-            placeholder="Breve rewsumo do artigo"
+            placeholder="Breve resumo do artigo"
             type="textarea"
             name="resumo"
             label="Resumo"
@@ -77,7 +77,7 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({article, onSubmit, onCl
           />
 
           <Input
-            placeholder="Breve rewsumo do artigo"
+            placeholder="Breve resumo do artigo"
             type="file"
             name="image"
             label="Banner"
@@ -99,7 +99,9 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({article, onSubmit, onCl
               border-b-blue-600 bg-blue-500 py-3 text-white font-bold
               hover:bg-blue-400 active:translate-y-[0.125rem] active:border-b-blue-400
             `}
-          >Salvar</Button>
+          >
+          Salvar
+          </Button>
           <Button 
             type="button" 
             cor={`
@@ -108,7 +110,9 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({article, onSubmit, onCl
               hover:bg-red-400 active:translate-y-[0.125rem] active:border-b-red-400
             `}
             onClick={onClick}
-          >Deletar</Button>
+          >
+          Deletar
+          </Button>
         </form>
       </div>
     </div>

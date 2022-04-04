@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArticleThumbnailProps } from '../ArticleThumbnail/ArticleThumbnail.types';
-
 
 export const Navigation = () => {
   const navigate = useNavigate();

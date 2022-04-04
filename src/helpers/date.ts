@@ -1,4 +1,3 @@
-
 const defaultDateFormat: Intl.DateTimeFormatOptions = {
   month: 'short',
   day: '2-digit',
