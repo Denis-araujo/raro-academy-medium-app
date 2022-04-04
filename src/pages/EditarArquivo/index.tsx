@@ -30,18 +30,15 @@ export const EditarArquivoPage = () => {
     if (artigo.id) {
       await apiClient.patch(`/artigos/${artigo.id}`, {...artigo})
       navigate(`/artigo/${artigo.id}`)
-      console.log('cheguei aqui patch')
     } else {
       const guardaArtigo = await apiClient.post(`/artigos`, {...artigo})
       navigate(`/artigo/${guardaArtigo.data.id}`)
-      console.log('cheguei aqui post')
     }
   }
 
   async function deletarArquivo() {
     await apiClient.delete(`/artigos/${id}`)
     navigate(`/artigos`)
-    console.log('Cheguei aqui')
   }
 
   return (
